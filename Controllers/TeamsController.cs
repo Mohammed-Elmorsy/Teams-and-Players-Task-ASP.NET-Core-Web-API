@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +37,15 @@ namespace TeamsPlayersTaskWebAPI_MohammedElmorsy.Controllers
         //    return "value";
         //}
 
-        //// POST api/<TeamController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        [HttpPost]
+        public IActionResult AddTeamWithPlayers(Team team)
+        {
+            if (teamRepository.AddTeamWithPlayers(team))
+            {
+                return Ok(new { message = "Transaction Succeeded" });
+            }
+            else return BadRequest("failed to add team with players");
+        }
 
         // PUT api/<TeamController>/5
         [HttpPut]
