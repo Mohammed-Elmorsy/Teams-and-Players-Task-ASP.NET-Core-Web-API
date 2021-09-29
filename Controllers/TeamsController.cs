@@ -37,14 +37,22 @@ namespace TeamsPlayersTaskWebAPI_MohammedElmorsy.Controllers
         //    return "value";
         //}
 
+        [Route("api/[controller]/[action]")]
+        [HttpGet]
+        public IActionResult AddTeamWithPlayers()
+        {
+            return Ok(new { message = "response from AddTeamWithPlayers action" });
+        }
+
         [HttpPost]
+        [Route("AddTeamWithPlayers")]
         public IActionResult AddTeamWithPlayers(Team team)
         {
             if (teamRepository.AddTeamWithPlayers(team))
             {
                 return Ok(new { message = "Transaction Succeeded" });
             }
-            else return BadRequest("failed to add team with players");
+            else return BadRequest(new { message = "failed to add team with players" });
         }
 
         // PUT api/<TeamController>/5

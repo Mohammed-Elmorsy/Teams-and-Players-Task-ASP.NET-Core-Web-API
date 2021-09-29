@@ -42,6 +42,25 @@ namespace TeamsPlayersTaskWebAPI_MohammedElmorsy.Controllers
         //{
         //}
 
+        [HttpPost]
+        public IActionResult Post(List<Player> players)
+        {
+            try
+            {
+                List<Player> addedPlayers = new List<Player>();
+                foreach (Player player in players)
+                {
+                    addedPlayers.Add(playerRepository.Add(player));
+                }
+                return Ok(addedPlayers);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message});
+            }
+
+        }
+
         //// PUT api/<PlayerController>/5
         [HttpPut]
         public IActionResult Update(Player player)

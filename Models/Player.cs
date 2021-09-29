@@ -12,22 +12,23 @@ namespace TeamsPlayersTaskWebAPI_MohammedElmorsy.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 2)]
         public string Name { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 2)]
         public string Nationality { get; set; }
 
-        [Required]
+        //[Required]
         public DateTime DateOfBirth { get; set; }
 
-        [Required]
+        //[Required]
         public string ImageName { get; set; }
 
+        public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 
         [NotMapped]
